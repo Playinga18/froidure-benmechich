@@ -1,5 +1,5 @@
 
-package fr.uge.clone;
+package fr.uge.clone.controller;
 
 import javax.persistence.*;
 
@@ -8,7 +8,10 @@ import javax.persistence.*;
 public class Artefact {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
+
+    public Artefact(){
+    }
     public Long getId() {
         return id;
     }
