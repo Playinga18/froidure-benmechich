@@ -164,5 +164,8 @@
     <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.4.24" level="project" />
     <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.4" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm:9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.ow2.asm:asm-util:9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.ow2.asm:asm-tree:9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.ow2.asm:asm-analysis:9.4" level="project" />
   </component>
 </module>
