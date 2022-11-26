@@ -19,7 +19,7 @@ public class Parser {
         return finder.findAll().stream().findFirst().orElseThrow();
     }
 
-    private void ParseArtefacts(ModuleReference module){
+    private void ParseArtefacts(ModuleReference module) throws IOException {
         try(var reader = module.open()) {
             for (var filename : (Iterable<String>) reader.list()::iterator) {
                 if (!filename.endsWith(".class")) {
@@ -33,8 +33,6 @@ public class Parser {
                 }
                 var instClass = parsingClass(writer.toString());
             }
-        }catch ( IOException e){
-            throw new RuntimeException(e);
         }
     }
 
@@ -68,12 +66,12 @@ public class Parser {
     }
 
     public void parse(String name) throws Exception {
-        //Opentest();
-        ParseArtefacts(finderArtefacts(name));
+        Opentest();
+        //ParseArtefacts(finderArtefacts(name));
     }
 
     public static void main(String[] args) throws Exception {
-        var parser = new Parser();
-        parser.parse("C:\\\\Users\\\\froid\\\\Downloads");
+        //var parser = new Parser();
+        //parser.parse("C:\\\\Users\\\\froid\\\\Downloads");
     }
 }
