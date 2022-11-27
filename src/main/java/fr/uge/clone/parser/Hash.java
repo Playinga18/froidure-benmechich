@@ -1,5 +1,7 @@
 package fr.uge.clone.parser;
 
+import java.util.Objects;
+
 public class Hash {
     private int line;
     private long hash;
@@ -8,6 +10,10 @@ public class Hash {
     private final static int CONSTANT_B = 301;
 
     public Hash(String[] source, int line) {
+        Objects.requireNonNull(source);
+        if (line < 0){
+            throw new IllegalArgumentException("line must be positive");
+        }
         this.line = line;
         this.source = source;
         hash = hashing();
@@ -16,7 +22,9 @@ public class Hash {
     private long hashing () {
         double result = 0;
         for (var i = 0; i < source.length; i++){
-            result += HashingInst(source[i],i );
+            if (source[i] != null){
+                result += HashingInst(source[i],i );
+            }
         }
         return (long) result;
     }
@@ -26,6 +34,7 @@ public class Hash {
     }
 
     public void addRolling(String newInst){
+        Objects.requireNonNull(newInst);
         var tmp = new String[source.length];
         for (var i = 0; i < source.length-1; i++){
             tmp[i] = source[i+1];
@@ -48,8 +57,13 @@ public class Hash {
         return source;
     }
 
+    @Override
+    public String toString() {
+        return "hash: " + hash + " from: " + line + " line";
+    }
+
     public static void main(String[] args) {
-        var hash = new Hash("Hello Bonjour ca va".split(" "), 1);
+        var hash = new Hash("Hello Bonjour ca va hier demain".split(" "), 1);
         System.out.println(hash.getHash());
         hash.addRolling("Comment");
         System.out.println(hash.getHash());
