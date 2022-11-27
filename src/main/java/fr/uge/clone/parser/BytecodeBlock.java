@@ -33,7 +33,7 @@ public class BytecodeBlock {
         var lstHash = new ArrayList<Hash>();
         for (var i = 0; i <= block.length/BLOCK_LENGTH; i++) {
             var tmp = Arrays.copyOfRange(block, i*BLOCK_LENGTH, (i+1)*BLOCK_LENGTH);
-            System.out.println(Arrays.toString(tmp));
+            //System.out.println(Arrays.toString(tmp));
             lstHash.add( new Hash(tmp, i*BLOCK_LENGTH));
         }
         return lstHash;
@@ -59,6 +59,6 @@ public class BytecodeBlock {
     public static void main(String[] args) {
         var block = new BytecodeBlock(0, "Hello\nBonjour\nca\nva\nhier\ndemain\nciao\nle\nla");
         System.out.println(block);
-        System.out.println(block.BlockToHash());
+        //System.out.println(block.BlockToHash());
     }
 }
