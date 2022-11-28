@@ -1,5 +1,6 @@
 package fr.uge.clone.parser;
 
+import org.jetbrains.annotations.NotNull;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.util.TraceClassVisitor;
 
@@ -19,7 +20,7 @@ public class ClassFile {
         this.filename = filename;
     }
 
-    public void open(ModuleReader reader) throws Exception {
+    public void open(@NotNull ModuleReader reader) throws Exception {
         var writer = new StringWriter();
         try(var inputStream = reader.open(filename).orElseThrow()) {
             var classReader = new ClassReader(inputStream);

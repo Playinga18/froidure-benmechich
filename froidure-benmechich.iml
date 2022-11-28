@@ -167,5 +167,6 @@
     <orderEntry type="library" name="Maven: org.ow2.asm:asm-util:9.4" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm-tree:9.4" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm-analysis:9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains:annotations:23.0.0" level="project" />
   </component>
 </module>
