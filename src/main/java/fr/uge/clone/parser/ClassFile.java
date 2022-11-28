@@ -3,25 +3,28 @@ package fr.uge.clone.parser;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.util.TraceClassVisitor;
 
-import java.io.*;
-import java.util.Objects;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.lang.module.ModuleReader;
+import java.util.ArrayList;
 
 public class ClassFile {
-    private final String filename;
+
+    private String filename;
     private BytecodeBlock code;
 
     public ClassFile(String filename){
-        Objects.requireNonNull(filename);
-        this.filename = filename;
         this.code = new BytecodeBlock(0, "");
+        this.filename = filename;
     }
 
-    public void open() throws Exception {
+    public void open(ModuleReader reader) throws Exception {
         var writer = new StringWriter();
-        try {
-            ClassReader reader = new ClassReader(new FileInputStream(filename));
+        try(var inputStream = reader.open(filename).orElseThrow()) {
+            var classReader = new ClassReader(inputStream);
             TraceClassVisitor traceVisitor = new TraceClassVisitor(new PrintWriter(writer));
-            reader.accept(traceVisitor, 0);
+            classReader.accept(traceVisitor, 0);
         }catch (IOException t) {
             throw new Exception(t);
         }
@@ -37,10 +40,12 @@ public class ClassFile {
         return this.code;
     }
 
-    public static void main(String[] args) throws Exception {
-        var file = new ClassFile("C:\\test\\Toy.class");
-        file.open();
-        System.out.println(file.getCode());
-        System.out.println(file.getCode().BlockToHash());
+    public ArrayList<Hash> fileToHashList() {
+        return code.BlockToHash();
+    }
+
+    @Override
+    public String toString() {
+        return code.toString();
     }
 }
