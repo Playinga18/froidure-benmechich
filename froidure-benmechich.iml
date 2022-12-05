@@ -14,7 +14,9 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="entityManagerFactory" />
+        </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
@@ -168,5 +170,6 @@
     <orderEntry type="library" name="Maven: org.ow2.asm:asm-tree:9.4" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm-analysis:9.4" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains:annotations:23.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars:bootstrap:5.2.1" level="project" />
   </component>
 </module>
