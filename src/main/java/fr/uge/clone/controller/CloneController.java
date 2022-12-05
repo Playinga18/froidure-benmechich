@@ -14,13 +14,9 @@ public class CloneController {
 
     @RequestMapping(value = "/addArtefact", method = RequestMethod.POST)
     public void insertNewArtefact() {
-        Artefact art = repository.save(new Artefact("nouveau"));
-        System.out.println(art);
     }
 
     @RequestMapping(value = "/allArtefacts", method = RequestMethod.GET)
     public void getAllArtefacts() {
-        var artefacts = repository.findAll();
-        System.out.println(artefacts);
     }
 }
