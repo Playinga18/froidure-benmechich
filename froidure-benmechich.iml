@@ -6,6 +6,7 @@
         <webroots />
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/main/resources" />
         </sourceRoots>
       </configuration>
     </facet>
@@ -15,6 +16,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="entityManagerFactory" />
+          <factory-entry name="froidure-benmechich" value="ee5a4b55-3179-43cc-b6da-b9d85e9e9e8e" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
@@ -33,6 +35,8 @@
       <excludeFolder url="file://$MODULE_DIR$/src/main/webapp/dist" />
       <excludeFolder url="file://$MODULE_DIR$/src/main/webapp/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
+      <excludeFolder url="file://$MODULE_DIR$/src/webapp/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/src/webapp/tmp" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
