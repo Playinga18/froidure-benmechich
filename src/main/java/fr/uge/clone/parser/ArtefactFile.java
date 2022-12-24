@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class ArtefactFile {
     private String ArtefactName;
-    ArrayList<ClassFile> files = new ArrayList<ClassFile>();
+    ArrayList<ClassFile> files = new ArrayList<>();
 
     public ArtefactFile(String name){
         Objects.requireNonNull(name);
@@ -53,7 +53,7 @@ public class ArtefactFile {
     }
 
     public static void main(String[] args) throws Exception {
-        var artefact = new ArtefactFile("C:\\\\Users\\\\froid\\\\Downloads\\\\");
+        var artefact = new ArtefactFile("C:\\\\Utilisateurs\\\\ayas4\\\\Documents\\\\");
         artefact.open();
         System.out.println(artefact);
     }
