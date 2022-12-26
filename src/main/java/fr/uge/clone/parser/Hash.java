@@ -58,11 +58,11 @@ public class Hash {
 
     public static void main(String[] args) {
         var str = """
-                LOCALVARIABLE this AnnotationVisitor 0\n
-                LOCALVARIABLE this AnnotationVisitor 0\n
-                LOCALVARIABLE this AnnotationVisitor 0\n
-                LOCALVARIABLE this AnnotationVisitor 0\n
-                LOCALVARIABLE this AnnotationVisitor 0\n
+                LOCALVARIABLE this AnnotationVisitor 0
+                LOCALVARIABLE this AnnotationVisitor 0
+                LOCALVARIABLE this AnnotationVisitor 0
+                LOCALVARIABLE this AnnotationVisitor 0
+                LOCALVARIABLE this AnnotationVisitor 0
                 """;
         var hash = new Hash(new String[]{str},0);
         System.out.println(hash.getHash());

@@ -28,8 +28,10 @@ public class BytecodeBlock {
         var lstHash = new ArrayList<Hash>();
         for (var i = 0; i <= block.length/BLOCK_LENGTH; i++) {
             var tmp = Arrays.copyOfRange(block, i*BLOCK_LENGTH, (i+1)*BLOCK_LENGTH);
-            //System.out.println(Arrays.toString(tmp));
-            lstHash.add( new Hash(tmp, i*BLOCK_LENGTH));
+            var hash = new Hash(tmp, i*BLOCK_LENGTH);
+            if (hash.getHash() > 0){
+                lstHash.add(hash);
+            }
         }
         return lstHash;
     }
