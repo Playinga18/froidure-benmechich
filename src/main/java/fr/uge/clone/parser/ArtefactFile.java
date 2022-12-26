@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class ArtefactFile {
-    private String ArtefactName;
+    private final String ArtefactName;
     ArrayList<ClassFile> files = new ArrayList<>();
 
     public ArtefactFile(String name){
@@ -47,7 +47,7 @@ public class ArtefactFile {
     @Override
     public String toString() {
         var str = new StringBuilder();
-        str.append(ArtefactName + "\n");
+        str.append(ArtefactName).append("\n");
         for (var x: files){
             str.append(x.toString());
         }
@@ -58,5 +58,6 @@ public class ArtefactFile {
         var artefact = new ArtefactFile("C:\\Users\\froid\\Downloads");
         artefact.open();
         System.out.println(artefact.getClassFiles().get(1));
+        System.out.println(artefact.getClassFiles().get(1).fileToHashList());
     }
 }

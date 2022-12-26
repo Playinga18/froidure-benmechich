@@ -1,6 +1,5 @@
 package fr.uge.clone.parser;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class Hash {
@@ -31,12 +30,11 @@ public class Hash {
     }
 
     private long HashingInst(String inst, int n){
-        var res = Arrays.asList(inst)
-                .stream()
-                .mapToInt(X -> X.hashCode())
-                .reduce(0, Integer::sum);
-        return res;
-        //return (long) (inst.hashCode() * Math.pow(CONSTANT_A, source.length - n) % CONSTANT_B);
+        var res = 0;
+        for (var i = 0; i < inst.length(); i++){
+            res += (inst.charAt(i));
+        }
+        return (long) (res * Math.pow(CONSTANT_A, source.length - n) % CONSTANT_B);
     }
 
     public void addRolling(String newInst){
@@ -59,7 +57,14 @@ public class Hash {
     }
 
     public static void main(String[] args) {
-        var hash = new Hash(new String[]{"LOCALVARIABLE this AnnotationVisitor 0\n"},0);
+        var str = """
+                LOCALVARIABLE this AnnotationVisitor 0\n
+                LOCALVARIABLE this AnnotationVisitor 0\n
+                LOCALVARIABLE this AnnotationVisitor 0\n
+                LOCALVARIABLE this AnnotationVisitor 0\n
+                LOCALVARIABLE this AnnotationVisitor 0\n
+                """;
+        var hash = new Hash(new String[]{str},0);
         System.out.println(hash.getHash());
     }
 
