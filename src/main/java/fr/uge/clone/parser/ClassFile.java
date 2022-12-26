@@ -1,6 +1,5 @@
 package fr.uge.clone.parser;
 
-import org.jetbrains.annotations.NotNull;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.util.TraceClassVisitor;
 
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 
 public class ClassFile {
 
-    private String filename;
+    private final String filename;
     private BytecodeBlock code;
 
     public ClassFile(String filename){
@@ -20,7 +19,7 @@ public class ClassFile {
         this.filename = filename;
     }
 
-    public void open(@NotNull ModuleReader reader) throws Exception {
+    public void open(ModuleReader reader) throws Exception {
         var writer = new StringWriter();
         try(var inputStream = reader.open(filename).orElseThrow()) {
             var classReader = new ClassReader(inputStream);
@@ -31,10 +30,6 @@ public class ClassFile {
         }
         var tmp = new Parser().parsingClass(writer.toString());
         code = new BytecodeBlock(0, tmp);
-    }
-
-    public boolean codeIsEmpty() {
-        return code.getBlock().length == 0;
     }
 
     public BytecodeBlock getCode() {

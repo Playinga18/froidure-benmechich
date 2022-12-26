@@ -8,7 +8,14 @@ public class Parser {
 
         return Pattern
                 .compile(
-                        "private|public|//.*|L\\d|LINENUMBER.*|\\(.*\\)[A-Z]|[;}{]|[A-Z]?([a-z]+)/")
+                        "private|public|protected|final|abstract|" +
+                                "//.*|" +
+                                "L\\d|" +
+                                "LINENUMBER.*|" +
+                                "\\(.*\\)[A-Z]|" +
+                                "[;}{]|" +
+                                "[A-Z]?([a-z]+)/|" +
+                                "([A-Z][a-z]+)+[./]")
                 .matcher(str)
                 .replaceAll("");
     }

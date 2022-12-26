@@ -42,6 +42,8 @@ public class ArtefactFile {
         return hash;
     }
 
+    public ArrayList<ClassFile> getClassFiles(){ return files; }
+
     @Override
     public String toString() {
         var str = new StringBuilder();
@@ -53,8 +55,8 @@ public class ArtefactFile {
     }
 
     public static void main(String[] args) throws Exception {
-        var artefact = new ArtefactFile("C:\\\\Utilisateurs\\\\ayas4\\\\Documents\\\\");
+        var artefact = new ArtefactFile("C:\\Users\\froid\\Downloads");
         artefact.open();
-        System.out.println(artefact);
+        System.out.println(artefact.getClassFiles().get(1));
     }
 }

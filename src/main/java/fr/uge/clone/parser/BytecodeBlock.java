@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class BytecodeBlock {
-    private int line;
     private String[] block;
     private final static int BLOCK_LENGTH = 5;
 
@@ -14,18 +13,14 @@ public class BytecodeBlock {
         if (line < 0){
             throw new IllegalArgumentException("line must be positive");
         }
-        this.line = line;
         this.block = block.split("\n");
     }
 
     public void addRolling(String newInst){
         Objects.requireNonNull(newInst);
         var tmp = new String[block.length];
-        for (var i = 0; i < block.length-1; i++){
-            tmp[i] = block[i+1];
-        }
+        if (block.length - 1 >= 0) System.arraycopy(block, 1, tmp, 0, block.length - 1);
         tmp[block.length-1] = newInst;
-        line += 1;
         block = tmp;
     }
 
@@ -39,19 +34,11 @@ public class BytecodeBlock {
         return lstHash;
     }
 
-    public int line(){
-        return this.line;
-    }
-
-    public String[] getBlock(){
-        return block;
-    }
-
     @Override
     public String toString() {
         var str = new StringBuilder();
         for (var i = 0; i < block.length; i++) {
-           str.append(i + " : "+ block[i] + "\n");
+           str.append(i).append(" : ").append(block[i]).append("\n");
         }
         return str.toString();
     }

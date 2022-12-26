@@ -36,9 +36,7 @@ public class Hash {
     public void addRolling(String newInst){
         Objects.requireNonNull(newInst);
         var tmp = new String[source.length];
-        for (var i = 0; i < source.length-1; i++){
-            tmp[i] = source[i+1];
-        }
+        if (source.length - 1 >= 0) System.arraycopy(source, 1, tmp, 0, source.length - 1);
         tmp[source.length-1] = newInst;
         line += 1;
         source = tmp;
@@ -47,14 +45,6 @@ public class Hash {
 
     public long getHash(){
         return this.hash;
-    }
-
-    public int getLine(){
-        return line;
-    }
-
-    public String[] getSources(){
-        return source;
     }
 
     @Override
@@ -68,6 +58,5 @@ public class Hash {
         hash.addRolling("Comment");
         System.out.println(hash.getHash());
     }
-
 
 }
