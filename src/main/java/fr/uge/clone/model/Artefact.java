@@ -9,7 +9,7 @@ import java.util.List;
 public class Artefact {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long idA;
 
     @Column(name = "numVersion")
     private long numVersion;
@@ -41,11 +41,11 @@ public class Artefact {
     }
 
     public long getId() {
-        return id;
+        return idA;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.idA = id;
     }
 
     public long getNumVersion() {
