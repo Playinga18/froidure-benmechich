@@ -34,9 +34,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/src/main/webapp/dist" />
       <excludeFolder url="file://$MODULE_DIR$/src/main/webapp/tmp" />
-      <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/src/webapp/dist" />
       <excludeFolder url="file://$MODULE_DIR$/src/webapp/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -174,7 +174,7 @@
     <orderEntry type="library" name="Maven: org.ow2.asm:asm-util:9.4" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm-tree:9.4" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm-analysis:9.4" level="project" />
-    <orderEntry type="library" name="Maven: org.jetbrains:annotations:23.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains:annotations:23.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:bootstrap:5.2.1" level="project" />
   </component>
 </module>
