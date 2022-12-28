@@ -3,9 +3,8 @@ package fr.uge.clone.parser;
 import java.util.Objects;
 
 public class Hash {
-    private int line;
-    private long hash;
-    private String[] source;
+    private final int line;
+    private final long hash;
     private final static int CONSTANT_A = 10;
     private final static int CONSTANT_B = 301;
 
@@ -15,11 +14,10 @@ public class Hash {
             throw new IllegalArgumentException("line must be positive");
         }
         this.line = line;
-        this.source = source;
-        hash = hashing();
+        hash = hashing(source);
     }
 
-    private long hashing () {
+    private long hashing (String[] source) {
         double result = 0;
         for (var i = 0; i < source.length; i++){
             if (source[i] != null){
@@ -34,17 +32,11 @@ public class Hash {
         for (var i = 0; i < inst.length(); i++){
             res += (inst.charAt(i));
         }
-        return (long) (res * Math.pow(CONSTANT_A, source.length - n) % CONSTANT_B);
+        return (long) (res * Math.pow(CONSTANT_A,BytecodeBlock.getBlockLength() - n) % CONSTANT_B);
     }
 
-    public void addRolling(String newInst){
-        Objects.requireNonNull(newInst);
-        var tmp = new String[source.length];
-        if (source.length - 1 >= 0) System.arraycopy(source, 1, tmp, 0, source.length - 1);
-        tmp[source.length-1] = newInst;
-        line += 1;
-        source = tmp;
-        hash = hashing();
+    public Hash addRolling(String[] source){
+        return new Hash(source, line + 1);
     }
 
     public long getHash(){
@@ -68,4 +60,5 @@ public class Hash {
         System.out.println(hash.getHash());
     }
 
+    public int getLine() { return this.line; }
 }

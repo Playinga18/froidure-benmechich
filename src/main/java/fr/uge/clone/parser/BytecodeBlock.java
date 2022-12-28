@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class BytecodeBlock {
     private String[] block;
-    private final static int BLOCK_LENGTH = 5;
+    private final static int BLOCK_LENGTH = 3;
 
     public BytecodeBlock(int line, String block) {
         Objects.requireNonNull(block);
@@ -16,13 +16,17 @@ public class BytecodeBlock {
         this.block = block.split("\n");
     }
 
-    public void addRolling(String newInst){
-        Objects.requireNonNull(newInst);
-        var tmp = new String[block.length];
-        if (block.length - 1 >= 0) System.arraycopy(block, 1, tmp, 0, block.length - 1);
-        tmp[block.length-1] = newInst;
-        block = tmp;
+    public Hash addRolling(Hash h){
+        Objects.requireNonNull(h);
+        var line = h.getLine();
+        if (line + 1 < block.length){
+            var source = Arrays.copyOfRange(block, h.getLine() + 1, h.getLine() + 1 + BLOCK_LENGTH);
+            return h.addRolling(source);
+        }
+        return null;
     }
+
+    public static int getBlockLength(){ return BLOCK_LENGTH; }
 
     public ArrayList<Hash> BlockToHash(){
         var lstHash = new ArrayList<Hash>();

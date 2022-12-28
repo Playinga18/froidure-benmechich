@@ -55,9 +55,9 @@ public class ArtefactFile {
     }
 
     public static void main(String[] args) throws Exception {
-        var artefact = new ArtefactFile("C:\\Users\\ayas4\\Downloads\\Splendor\\lib");
+        var artefact = new ArtefactFile("C:\\Users\\froid\\Downloads");
         artefact.open();
-        System.out.println(artefact.getClassFiles().get(1));
+        //System.out.println(artefact.getClassFiles().get(1));
         //System.out.println(artefact.getClassFiles().get(1).fileToHashList());
         System.out.println(artefact.IndexArtefact().size());
     }
