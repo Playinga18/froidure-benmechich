@@ -1,4 +1,4 @@
-package fr.uge.clone.parser;
+package fr.uge.clone.backend;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.util.TraceClassVisitor;
@@ -30,10 +30,6 @@ public class ClassFile {
         }
         var tmp = new Parser().parsingClass(writer.toString());
         code = new BytecodeBlock(0, tmp);
-    }
-
-    public BytecodeBlock getCode() {
-        return this.code;
     }
 
     public ArrayList<Hash> fileToHashList() {

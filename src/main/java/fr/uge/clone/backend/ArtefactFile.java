@@ -1,4 +1,4 @@
-package fr.uge.clone.parser;
+package fr.uge.clone.backend;
 
 import java.lang.module.ModuleFinder;
 import java.lang.module.ModuleReference;
@@ -41,9 +41,6 @@ public class ArtefactFile {
         }
         return hash;
     }
-
-    public ArrayList<ClassFile> getClassFiles(){ return files; }
-
     @Override
     public String toString() {
         var str = new StringBuilder();

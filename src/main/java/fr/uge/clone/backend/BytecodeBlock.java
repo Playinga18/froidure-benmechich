@@ -1,11 +1,11 @@
-package fr.uge.clone.parser;
+package fr.uge.clone.backend;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
 public class BytecodeBlock {
-    private String[] block;
+    private final String[] block;
     private final static int BLOCK_LENGTH = 3;
 
     public BytecodeBlock(int line, String block) {
