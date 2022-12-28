@@ -105,7 +105,7 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>src/main/webapp/dist</directory>
+                            <directory>src/main/angular/dist</directory>
                             <includes>
                                 <include>**</include>
                             </includes>
@@ -130,7 +130,7 @@
                             <outputDirectory>${project.build.directory}/classes/static/</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>src/main/webapp/dist/webapp</directory>
+                                    <directory>src/main/angular/dist/angular</directory>
                                     <filtering>true</filtering>
                                 </resource>
                             </resources>
@@ -144,7 +144,7 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>1.12.1</version>
                 <configuration>
-                    <workingDirectory>src/main/webapp</workingDirectory>
+                    <workingDirectory>src/main/angular</workingDirectory>
                     <installDirectory>target</installDirectory>
                     <nodeVersion>v19.0.0</nodeVersion>
                     <npmVersion>8.19.2</npmVersion>

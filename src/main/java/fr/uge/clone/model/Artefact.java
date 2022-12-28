@@ -88,4 +88,9 @@ public class Artefact {
         this.description = description;
     }
 
+    @Override
+    public String toString(){
+        return "id : " + id + "\n numVersion : " + numVersion + "\n developer : " + developer + "\n path : " + path + "\n metaData : " + metaData + "\n description : " + description;
+    }
+
 }
