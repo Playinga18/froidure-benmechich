@@ -90,7 +90,7 @@ public class Artefact {
 
     @Override
     public String toString(){
-        return "id : " + id + "\n numVersion : " + numVersion + "\n developer : " + developer + "\n path : " + path + "\n metaData : " + metaData + "\n description : " + description;
+        return "id : " + idA + "\n numVersion : " + numVersion + "\n developer : " + developer + "\n path : " + path + "\n metaData : " + metaData + "\n description : " + description;
     }
 
 }
