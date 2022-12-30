@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class BytecodeBlock {
     private final String[] block;
-    private final static int BLOCK_LENGTH = 3;
+    private final static int BLOCK_LENGTH = 10;
 
     public BytecodeBlock(int line, String block) {
         Objects.requireNonNull(block);

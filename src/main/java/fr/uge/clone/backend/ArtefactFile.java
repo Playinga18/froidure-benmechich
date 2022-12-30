@@ -4,7 +4,10 @@ import java.lang.module.ModuleFinder;
 import java.lang.module.ModuleReference;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ArtefactFile {
     private final String ArtefactName;
@@ -35,11 +38,18 @@ public class ArtefactFile {
     }
 
     public ArrayList<Hash> IndexArtefact(){
-        var hash = new ArrayList<Hash>();
+        var list = new ArrayList<Hash>();
         for (var f: files){
-            hash.addAll(f.fileToHashList());
+            list.addAll(f.fileToHashList());
         }
-        return hash;
+        //return list;
+        return list.stream()
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toMap(
+                                h -> h.getHash(),
+                                h -> h,
+                                (h1, h2) -> h1),
+                        m -> new ArrayList<>(m.values())));
     }
     @Override
     public String toString() {
@@ -49,6 +59,10 @@ public class ArtefactFile {
             str.append(x.toString());
         }
         return str.toString();
+    }
+
+    private List<ClassFile> getClassFiles() {
+        return files;
     }
 
     public static void main(String[] args) throws Exception {

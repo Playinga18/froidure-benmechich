@@ -5,8 +5,8 @@ import java.util.Objects;
 public class Hash {
     private final int line;
     private final long hash;
-    private final static int CONSTANT_A = 10;
-    private final static int CONSTANT_B = 301;
+    private final static int CONSTANT_A = 20;
+    private final static int CONSTANT_B = 1017;
 
     public Hash(String[] source, int line) {
         Objects.requireNonNull(source);
@@ -28,11 +28,7 @@ public class Hash {
     }
 
     private long HashingInst(String inst, int n){
-        var res = 0;
-        for (var i = 0; i < inst.length(); i++){
-            res += (inst.charAt(i));
-        }
-        return (long) (res * Math.pow(CONSTANT_A,BytecodeBlock.getBlockLength() - n) % CONSTANT_B);
+        return Math.floorMod( inst.hashCode() * (long) Math.pow(CONSTANT_A, n), CONSTANT_B);
     }
 
     public Hash addRolling(String[] source){
