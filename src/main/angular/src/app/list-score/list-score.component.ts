@@ -5,4 +5,4 @@ import {Component} from '@angular/core';
   templateUrl: './list-score.component.html',
   styleUrls: ['./list-score.component.css']
 })
-export class ListScoreComponent{ }
+export class ListScoreComponent{}
