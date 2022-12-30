@@ -2,9 +2,7 @@ package fr.uge.clone.controller;
 
 import fr.uge.clone.message.ResponseFile;
 import fr.uge.clone.message.ResponseMessage;
-import fr.uge.clone.model.Artefact;
-import fr.uge.clone.repository.CloneRepository;
-import fr.uge.clone.service.CloneService;
+import fr.uge.clone.service.ArtefactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,10 +16,10 @@ import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-public class CloneController {
+public class ArtefactController {
 
     @Autowired
-    private CloneService storageService;
+    private ArtefactService storageService;
 
     @PostMapping("/upload")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {

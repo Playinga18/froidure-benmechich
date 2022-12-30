@@ -24,7 +24,7 @@ public class Artefact {
     private String description;
 
     @ManyToMany
-    List<Method> methods;
+    List<Block> methods;
 
     public Artefact() {
     }

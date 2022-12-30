@@ -4,6 +4,6 @@ import fr.uge.clone.model.Artefact;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface CloneRepository extends JpaRepository<Artefact, Long> {
+public interface ArtefactRepository extends JpaRepository<Artefact, Long> {
 
 }

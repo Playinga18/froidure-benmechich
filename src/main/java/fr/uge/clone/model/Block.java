@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Method")
-public class Method {
+@Table(name = "Block")
+public class Block {
 
     @Id
     private int hash;
@@ -22,10 +22,10 @@ public class Method {
     @ManyToMany
     List<Artefact> artefacts;
 
-    public Method() {
+    public Block() {
 
     }
-    public Method(int hash, String nameFile, String numLine, long methodSize) {
+    public Block(int hash, String nameFile, String numLine, long methodSize) {
         this.hash = hash;
         this.nameFile = nameFile;
         this.numLine = numLine;

@@ -1,7 +1,7 @@
 package fr.uge.clone.service;
 
 import fr.uge.clone.model.Artefact;
-import fr.uge.clone.repository.CloneRepository;
+import fr.uge.clone.repository.ArtefactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -12,18 +12,14 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @Service
-public class CloneService {
-    private final CloneRepository cloneRepo;
+public class ArtefactService {
+    private final ArtefactRepository cloneRepo;
 
     @Autowired
-    public CloneService(CloneRepository cloneRepo) {
+    public ArtefactService(ArtefactRepository cloneRepo) {
         this.cloneRepo = cloneRepo;
     }
 
-    /*public Artefact addArtefact(Artefact artefact){
-        Objects.requireNonNull(artefact,"artefact is null");
-        return cloneRepo.save(artefact);
-    }*/
 
     public Artefact store(MultipartFile file) throws IOException {
         var filename = StringUtils.cleanPath(file.getOriginalFilename());
