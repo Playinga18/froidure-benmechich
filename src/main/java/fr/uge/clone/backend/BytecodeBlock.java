@@ -2,6 +2,7 @@ package fr.uge.clone.backend;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class BytecodeBlock {
@@ -38,6 +39,27 @@ public class BytecodeBlock {
             }
         }
         return lstHash;
+    }
+
+    private Score KPbyArtefact(){
+        var list = this.BlockToHash();
+        var count = 0;
+        var rHash = new Hash(Arrays.copyOfRange(block, 0, BLOCK_LENGTH),0 );
+        var i = BLOCK_LENGTH;
+        do{
+            if (list.contains(rHash.getHash())){
+                count++;
+                rHash = new Hash(Arrays.copyOfRange(block, i, i+BLOCK_LENGTH), i);
+                i += BLOCK_LENGTH;
+            }else{
+                rHash.addRolling(Arrays.copyOfRange(block, i - BLOCK_LENGTH, i++));
+            }
+        }while(i < block.length);
+        return new Score(1,0,count/list.size());
+    }
+
+    public List<Score>KarpRabin(){
+        return null;
     }
 
     @Override

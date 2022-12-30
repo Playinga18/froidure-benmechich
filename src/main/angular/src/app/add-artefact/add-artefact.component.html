@@ -6,9 +6,11 @@
   </div>
 
   <div class="col-4">
+    <br>
     <button class="btn btn-success btn-sm" [disabled]="!selectedFiles" (click)="upload()">
       Upload
     </button>
+    <br>
   </div>
 </div>
 
@@ -34,5 +36,7 @@
       <a href="{{ file.url }}">{{ file.name }}</a>
     </li>
   </ul>
+
+  <a [routerLink]="['/artefact', 12]">Description de l'artefact</a>
 </div>
 
