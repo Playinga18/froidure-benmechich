@@ -36,6 +36,8 @@
       <excludeFolder url="file://$MODULE_DIR$/src/main/webapp/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/src/webapp/dist" />
       <excludeFolder url="file://$MODULE_DIR$/src/webapp/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/angular/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/angular/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

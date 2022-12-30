@@ -9,21 +9,18 @@ import java.util.List;
 public class Artefact {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idA;
+    private long id;
 
-    @Column(name = "numVersion")
-    private long numVersion;
+    private String numVersion;
 
-    @Column(name = "developer")
     private String developer;
 
-    @Column(name = "path")
     private String path;
 
-    @Column(name = "metaData")
+    @Lob
     private String metaData;
 
-    @Column(name = "description")
+    @Lob
     private String description;
 
     @ManyToMany
@@ -32,7 +29,7 @@ public class Artefact {
     public Artefact() {
     }
 
-    public Artefact(long id, long numVersion, String developer, String path, String metaData, String description) {
+    public Artefact(String numVersion, String developer, String path, String metaData, String description) {
         this.numVersion = numVersion;
         this.developer = developer;
         this.path = path;
@@ -41,18 +38,18 @@ public class Artefact {
     }
 
     public long getId() {
-        return idA;
+        return id;
     }
 
     public void setId(long id) {
-        this.idA = id;
+        this.id = id;
     }
 
-    public long getNumVersion() {
+    public String getNumVersion() {
         return numVersion;
     }
 
-    public void setNumVersion(long numVersion) {
+    public void setNumVersion(String numVersion) {
         this.numVersion = numVersion;
     }
 
@@ -90,7 +87,7 @@ public class Artefact {
 
     @Override
     public String toString(){
-        return "id : " + idA + "\n numVersion : " + numVersion + "\n developer : " + developer + "\n path : " + path + "\n metaData : " + metaData + "\n description : " + description;
+        return "id : " + id + "\n numVersion : " + numVersion + "\n developer : " + developer + "\n path : " + path + "\n metaData : " + metaData + "\n description : " + description;
     }
 
 }

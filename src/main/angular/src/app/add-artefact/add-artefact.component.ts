@@ -1,87 +1,66 @@
-import { Component } from '@angular/core';
-import {HttpErrorResponse, HttpEvent, HttpEventType} from "@angular/common/http";
-
-import {FileService} from "../file.service";
+import { Component, OnInit} from "@angular/core";
+import { HttpEventType, HttpResponse} from "@angular/common/http";
+import { Observable } from "rxjs";
+import { FileUploadService} from "../file.service";
 
 @Component({
   selector: 'app-add-artefact',
   templateUrl: './add-artefact.component.html',
-  styleUrls: ['./add-artefact.component.css']
+  styleUrls: [ './add-artefact.component.css' ]
 })
 
-export class AddArtefactComponent {
-filenames: string[] = [];
-  fileStatus = { status: '', requestType: '', percent: 0};
-  files: File[] = [];
-  shortLink: string = "";
-  loading: boolean = false; // Flag variable
-  title: string = "hello";
+export class AddArtefactComponent implements OnInit {
+  selectedFiles?: FileList;
+  currentFile?: File;
+  progress = 0;
+  message = '';
 
-  constructor(private fileService: FileService){}
+  fileInfos?: Observable<any>;
 
-  ngOnInit(): void {
+  constructor(private uploadService: FileUploadService) { }
+
+  selectFile(event: any): void {
+    this.selectedFiles = event.target.files;
   }
 
-  onUploadFiles(): void{
-    const formData: FormData = new FormData();
-    console.log("hey");
+  upload(): void {
+    this.progress = 0;
 
-    for (let file in this.files) {
-      console.log(file);
-      /* this.fileService.upload(file).subscribe(
-         (event: any) => {
-           if (typeof (event) === 'object') {
-             // Short link via api response
-             this.shortLink = event.link;
-             this.loading = false; // Flag variable
-           }
-         }
-       );*/
-    }
-  }
+    if (this.selectedFiles) {
+      const file: File | null = this.selectedFiles.item(0);
 
-  //upload file
-  addFile(event: Event): void{
-    const target = event.target as HTMLInputElement;
-    const fileList = target.files as FileList;
-    console.log(fileList);
+      if (file) {
+        this.currentFile = file;
 
-    for (let i = 0; i < fileList.length; i++) {
-      let file: File = fileList.item(i) as File;
-      console.log("file " + file);
-      this.files.push(file);
-    }
-  }
+        this.uploadService.upload(this.currentFile).subscribe({
+          next: (event: any) => {
+            if (event.type === HttpEventType.UploadProgress) {
+              this.progress = Math.round(100 * event.loaded / event.total);
+            } else if (event instanceof HttpResponse) {
+              this.message = event.body.message;
+              this.fileInfos = this.uploadService.getFiles();
+            }
+          },
+          error: (err: any) => {
+            console.log(err);
+            this.progress = 0;
 
-  private resportProgress(httpEvent: HttpEvent<string[]>) {
+            if (err.error && err.error.message) {
+              this.message = err.error.message;
+            } else {
+              this.message = 'Could not upload the file!';
+            }
 
-    switch (httpEvent.type){
-      case HttpEventType.UploadProgress:
-        this.uploadStatus(httpEvent.loaded, httpEvent.total!, 'Uploading');
-        break;
-      case HttpEventType.ResponseHeader:
-        console.log('Header returned', httpEvent);
-        break;
-      case HttpEventType.Response:
-        if(httpEvent.body instanceof Array){
-          for(const filename of httpEvent.body){
-            this.filenames.unshift(filename);
+            this.currentFile = undefined;
           }
-        }
-        this.fileStatus.status = 'done';
-        break;
+        });
+      }
 
-      default:
-        console.log(httpEvent);
+      this.selectedFiles = undefined;
     }
   }
-
-  private uploadStatus(loaded: number, total: number,  requestType: string) {
-    this.fileStatus.status = 'progress';
-    this.fileStatus.requestType = requestType;
-    this.fileStatus.percent = Math.round(100 * loaded / total);
+  ngOnInit(): void {
+    this.fileInfos = this.uploadService.getFiles();
   }
 
-  onDownloadFile(filename: string) {
-  }
 }
