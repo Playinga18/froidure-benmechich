@@ -1,9 +1,16 @@
-<div class="container" style="margin-top: 20px;">
-  <div class="panel panel-default">
-    <div class="panel-heading">
+<app-top-bar></app-top-bar>
+
+<div class="container d-flex justify-content-between mt-5">
+  <div class="box mx-2 bg-secondary"><app-list-score></app-list-score></div>
+  <div class="box mx-2 bg-secondary"><app-add-artefact></app-add-artefact></div>
+</div>
+
+<div class="container rounded-container bg-secondary mt-2 p-3">
+  <div class="panel panel-default ">
+    <div class="panel-heading ">
       <h4>Upload and Download Files</h4>
-    </div><br>
-    <div class="panel-body">
+    </div>
+    <div class="panel-body ">
       <strong>Select files from your computer</strong>
       <div *ngIf="fileStatus.status==='progress'">
         <div class="progress">
