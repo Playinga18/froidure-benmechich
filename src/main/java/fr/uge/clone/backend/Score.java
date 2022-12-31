@@ -1,15 +1,13 @@
 package fr.uge.clone.backend;
 
-import java.util.Objects;
+import java.util.List;
 
-public record Score(int idA1, int idA2, double score) {
+public record Score(int idA1, int idA2, double score, List<Hash> hash) {
 
-    public Score(int idA1, int idA2, double score) {
-        Objects.requireNonNull(idA1);
-        Objects.requireNonNull(idA2);
-        Objects.requireNonNull(score);
+    public Score(int idA1, int idA2, double score, List<Hash> hash) {
         this.idA1 = idA1;
         this.idA2 = idA2;
         this.score = score;
+        this.hash = hash;
     }
 }

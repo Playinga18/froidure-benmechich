@@ -3,10 +3,7 @@ package fr.uge.clone.backend;
 import java.lang.module.ModuleFinder;
 import java.lang.module.ModuleReference;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ArtefactFile {
@@ -42,15 +39,23 @@ public class ArtefactFile {
         for (var f: files){
             list.addAll(f.fileToHashList());
         }
-        //return list;
         return list.stream()
                 .collect(Collectors.collectingAndThen(
                         Collectors.toMap(
-                                h -> h.getHash(),
+                                Hash::getHash,
                                 h -> h,
                                 (h1, h2) -> h1),
                         m -> new ArrayList<>(m.values())));
     }
+
+    public ArrayList<Score> KPOnArtefact(){
+        var list = new ArrayList<Score>();
+        for (var f: files){
+            list.addAll(f.fileToScoreList());
+        }
+        return list;
+    }
+
     @Override
     public String toString() {
         var str = new StringBuilder();
@@ -69,7 +74,8 @@ public class ArtefactFile {
         var artefact = new ArtefactFile("C:\\Users\\froid\\Downloads");
         artefact.open();
         //System.out.println(artefact.getClassFiles().get(1));
-        //System.out.println(artefact.getClassFiles().get(1).fileToHashList());
+        System.out.println(artefact.getClassFiles().get(1).fileToHashList());
         System.out.println(artefact.IndexArtefact().size());
+        System.out.println(artefact.KPOnArtefact().size());
     }
 }

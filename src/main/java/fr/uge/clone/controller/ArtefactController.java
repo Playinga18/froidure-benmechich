@@ -54,7 +54,7 @@ public class ArtefactController {
         return ResponseEntity.status(HttpStatus.OK).body(files);
     }
 
-    @GetMapping("/files/{id}")
+    @GetMapping("/artefact/{id}")
     public ResponseEntity<String> getFile(@PathVariable String id) {
         var artefactDB = storageService.getFile(Long.valueOf(id));
 

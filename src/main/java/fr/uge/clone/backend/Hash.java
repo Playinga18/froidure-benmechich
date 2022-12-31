@@ -31,8 +31,8 @@ public class Hash {
         return Math.floorMod( inst.hashCode() * (long) Math.pow(CONSTANT_A, n), CONSTANT_B);
     }
 
-    public Hash addRolling(String[] source){
-        return new Hash(source, line + 1);
+    public Hash addRolling(String[] source, int line){
+        return new Hash(source, this.line + line);
     }
 
     public long getHash(){

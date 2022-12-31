@@ -2,7 +2,6 @@ package fr.uge.clone.backend;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 public class BytecodeBlock {
@@ -15,16 +14,6 @@ public class BytecodeBlock {
             throw new IllegalArgumentException("line must be positive");
         }
         this.block = block.split("\n");
-    }
-
-    public Hash addRolling(Hash h){
-        Objects.requireNonNull(h);
-        var line = h.getLine();
-        if (line + 1 < block.length){
-            var source = Arrays.copyOfRange(block, h.getLine() + 1, h.getLine() + 1 + BLOCK_LENGTH);
-            return h.addRolling(source);
-        }
-        return null;
     }
 
     public static int getBlockLength(){ return BLOCK_LENGTH; }
@@ -41,25 +30,29 @@ public class BytecodeBlock {
         return lstHash;
     }
 
-    private Score KPbyArtefact(){
-        var list = this.BlockToHash();
-        var count = 0;
+    private Score KPbyArtefact(int idA1, int idA2, ArrayList<Hash> list){
         var rHash = new Hash(Arrays.copyOfRange(block, 0, BLOCK_LENGTH),0 );
-        var i = BLOCK_LENGTH;
-        do{
+        var list_sim = new ArrayList<Hash>();
+        for (var i = BLOCK_LENGTH; i < list.size(); i++){
             if (list.contains(rHash.getHash())){
-                count++;
-                rHash = new Hash(Arrays.copyOfRange(block, i, i+BLOCK_LENGTH), i);
+                list_sim.add(rHash);
                 i += BLOCK_LENGTH;
-            }else{
-                rHash.addRolling(Arrays.copyOfRange(block, i - BLOCK_LENGTH, i++));
             }
-        }while(i < block.length);
-        return new Score(1,0,count/list.size());
+            rHash.addRolling(Arrays.copyOfRange(block, i - BLOCK_LENGTH, i), i-BLOCK_LENGTH);
+        }
+        return new Score(idA1,idA2, list_sim.size()/list.size(), list_sim);
     }
 
-    public List<Score>KarpRabin(){
-        return null;
+    public ArrayList<Score>KarpRabin(){
+        // -> futur map
+        ArrayList<Score> scores = new ArrayList<Score>();
+        for(var i = 0; i < 10;i++){
+            var tmp = KPbyArtefact(0,1,BlockToHash());
+            if (tmp.score() > 0){
+                scores.add( KPbyArtefact(0,1,BlockToHash()));
+            }
+        }
+        return scores;
     }
 
     @Override
