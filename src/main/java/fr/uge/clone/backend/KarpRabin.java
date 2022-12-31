@@ -3,7 +3,6 @@ package fr.uge.clone.backend;
 import fr.uge.clone.repository.ArtefactRepository;
 import fr.uge.clone.service.ArtefactService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 

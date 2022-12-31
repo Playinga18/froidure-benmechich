@@ -66,19 +66,5 @@ public class ArtefactFile {
         return str.toString();
     }
 
-    private List<ClassFile> getClassFiles() {
-        return files;
-    }
-
-    public static void main(String[] args) throws Exception {
-        /*
-        var artefact = new ArtefactFile("C:\\Users\\froid\\Downloads");
-        artefact.open();
-        //System.out.println(artefact.getClassFiles().get(1));
-        //System.out.println(artefact.getClassFiles().get(1).fileToHashList());
-        System.out.println(artefact.IndexArtefact().size());
-        //System.out.println(artefact.KPOnArtefact().size());
-
-         */
-    }
+    public static void main(String[] args) throws Exception { }
 }
