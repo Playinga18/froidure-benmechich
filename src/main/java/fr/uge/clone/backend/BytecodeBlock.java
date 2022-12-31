@@ -63,23 +63,4 @@ public class BytecodeBlock {
         }
         return str.toString();
     }
-
-    public static void main(String[] args) {
-        var str = """
-                class AnnotationVisitor
-                I api
-                AnnotationVisitor av
-                <init>
-                ALOAD 0
-                ILOAD 1
-                ACONST_NULL
-                INVOKESPECIAL <init>
-                RETURN
-                LOCALVARIABLE this AnnotationVisitor   0
-                LOCALVARIABLE api I   1
-                """;
-        var block = new BytecodeBlock(0, str);
-        System.out.println(block);
-        System.out.println(block.BlockToHash());
-    }
 }

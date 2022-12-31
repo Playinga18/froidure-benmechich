@@ -44,17 +44,5 @@ public class Hash {
         return "hash: " + hash + " from: " + line + " line";
     }
 
-    public static void main(String[] args) {
-        var str = """
-                LOCALVARIABLE this AnnotationVisitor 0
-                LOCALVARIABLE this AnnotationVisitor 0
-                LOCALVARIABLE this AnnotationVisitor 0
-                LOCALVARIABLE this AnnotationVisitor 0
-                LOCALVARIABLE this AnnotationVisitor 0
-                """;
-        var hash = new Hash(new String[]{str},0);
-        System.out.println(hash.getHash());
-    }
-
     public int getLine() { return this.line; }
 }
