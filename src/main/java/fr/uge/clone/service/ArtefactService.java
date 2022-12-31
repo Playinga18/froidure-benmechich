@@ -37,6 +37,6 @@ public class ArtefactService {
     }
 
     public Artefact getFile(Long id) {
-        return cloneRepo.findById(id).get();
+        return cloneRepo.findById(id).orElse(null);
     }
 }

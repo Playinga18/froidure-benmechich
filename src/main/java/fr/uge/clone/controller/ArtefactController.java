@@ -2,6 +2,8 @@ package fr.uge.clone.controller;
 
 import fr.uge.clone.message.ResponseFile;
 import fr.uge.clone.message.ResponseMessage;
+import fr.uge.clone.model.Artefact;
+import fr.uge.clone.repository.ArtefactRepository;
 import fr.uge.clone.service.ArtefactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -20,6 +22,9 @@ public class ArtefactController {
 
     @Autowired
     private ArtefactService storageService;
+
+    @Autowired
+    private ArtefactRepository artefactRepository;
 
     @PostMapping("/upload")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
@@ -54,12 +59,17 @@ public class ArtefactController {
         return ResponseEntity.status(HttpStatus.OK).body(files);
     }
 
-    @GetMapping("/artefact/{id}")
+    @GetMapping("/files/{id}")
     public ResponseEntity<String> getFile(@PathVariable String id) {
         var artefactDB = storageService.getFile(Long.valueOf(id));
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + artefactDB.getNumVersion() + "\"")
                 .body(artefactDB.toString());
+    }
+
+    @GetMapping("/artefact/{id}")
+    public Artefact getArtefact(@PathVariable Long id) {
+        return artefactRepository.findById(id).orElse(null);
     }
 }
