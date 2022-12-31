@@ -1,6 +1,7 @@
 import { Component, OnInit} from "@angular/core";
 import { HttpEventType, HttpResponse} from "@angular/common/http";
 import { Observable } from "rxjs";
+import { takeLast, map } from 'rxjs/operators';
 import { FileUploadService} from "../file.service";
 
 @Component({
@@ -59,8 +60,12 @@ export class AddArtefactComponent implements OnInit {
       this.selectedFiles = undefined;
     }
   }
+
   ngOnInit(): void {
-    this.fileInfos = this.uploadService.getFiles();
+    this.fileInfos = this.uploadService.getFiles().pipe(
+      takeLast(5),
+      map(files => files.reverse())
+    );
   }
 
 }

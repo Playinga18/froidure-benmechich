@@ -32,7 +32,7 @@ public class ClassFile {
         code = new BytecodeBlock(0, tmp);
     }
 
-    public ArrayList<Score> fileToScoreList(){ return code.KarpRabin(); }
+    public ArrayList<Score> fileToScoreList(){ return code.KP(); }
 
     public ArrayList<Hash> fileToHashList() {
         return code.BlockToHash();

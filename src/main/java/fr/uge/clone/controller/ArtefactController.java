@@ -37,17 +37,11 @@ public class ArtefactController {
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         String message = "";
         try {
-            synchronized (lock){
-                //var artefact = storageService.store(file);
-
-                stock.storeBlock(storageService.store(file));
-
-            }
-
+            //var artefact = storageService.store(file);
+            stock.storeBlock(storageService.store(file));
             byte[] bytes = file.getBytes();
             Path path = Paths.get("src/main/uploads/" + file.getOriginalFilename());
             Files.write(path, bytes);
-
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
         } catch (Exception e) {

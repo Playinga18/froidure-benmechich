@@ -33,7 +33,7 @@
   <div class="card-header">Liste des derniers artefacts</div>
   <ul class="list-group list-group-flush">
     <li *ngFor="let file of fileInfos | async" class="list-group-item">
-      <a href="{{ file.url }}">{{ file.name }}</a>
+      <a [routerLink]="['/artefact', 12]">{{ file.name }}</a>
     </li>
   </ul>
 

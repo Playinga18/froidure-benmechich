@@ -1,5 +1,7 @@
 package fr.uge.clone.backend;
 
+import fr.uge.clone.service.ArtefactService;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -30,29 +32,9 @@ public class BytecodeBlock {
         return lstHash;
     }
 
-    private Score KPbyArtefact(int idA1, int idA2, ArrayList<Hash> list){
-        var rHash = new Hash(Arrays.copyOfRange(block, 0, BLOCK_LENGTH),0 );
-        var list_sim = new ArrayList<Hash>();
-        for (var i = BLOCK_LENGTH; i < list.size(); i++){
-            if (list.contains(rHash.getHash())){
-                list_sim.add(rHash);
-                i += BLOCK_LENGTH;
-            }
-            rHash.addRolling(Arrays.copyOfRange(block, i - BLOCK_LENGTH, i), i-BLOCK_LENGTH);
-        }
-        return new Score(idA1,idA2, list_sim.size()/list.size(), list_sim);
-    }
-
-    public ArrayList<Score>KarpRabin(){
-        // -> futur map
-        ArrayList<Score> scores = new ArrayList<Score>();
-        for(var i = 0; i < 10;i++){
-            var tmp = KPbyArtefact(0,1,BlockToHash());
-            if (tmp.score() > 0){
-                scores.add( KPbyArtefact(0,1,BlockToHash()));
-            }
-        }
-        return scores;
+    public ArrayList<Score> KP(){
+        var kp = new KarpRabin(block);
+        return kp.KarpRabin();
     }
 
     @Override

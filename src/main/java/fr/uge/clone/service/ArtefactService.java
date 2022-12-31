@@ -23,7 +23,6 @@ public class ArtefactService {
         this.cloneRepo = cloneRepo;
     }
 
-
     public Artefact store(MultipartFile file) throws IOException {
         var filename = StringUtils.cleanPath(file.getOriginalFilename());
         var artefact = new Artefact(file.getOriginalFilename(), "test", file.getName(), file.toString(), "test");
