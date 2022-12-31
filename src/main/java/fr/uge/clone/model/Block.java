@@ -8,7 +8,7 @@ import java.util.List;
 public class Block {
 
     @Id
-    private int hash;
+    private long hash;
 
     @Column(name = "nameFile")
     private String nameFile;
@@ -25,7 +25,7 @@ public class Block {
     public Block() {
 
     }
-    public Block(int hash, String nameFile, String numLine, long methodSize) {
+    public Block(long hash, String nameFile, String numLine, long methodSize) {
         this.hash = hash;
         this.nameFile = nameFile;
         this.numLine = numLine;
@@ -33,11 +33,11 @@ public class Block {
     }
 
 
-    public int getHash() {
+    public long getHash() {
         return hash;
     }
 
-    public void setHash(int hash) {
+    public void setHash(long hash) {
         this.hash = hash;
     }
 
