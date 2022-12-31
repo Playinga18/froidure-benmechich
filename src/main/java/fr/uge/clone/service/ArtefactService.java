@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 
 @Service
 public class ArtefactService {
+    private final Object lock = new Object();
     private final ArtefactRepository cloneRepo;
 
     @Autowired
@@ -24,10 +25,12 @@ public class ArtefactService {
     }
 
     public Artefact store(MultipartFile file) throws IOException {
-        var filename = StringUtils.cleanPath(file.getOriginalFilename());
-        var artefact = new Artefact(file.getOriginalFilename(), "test", file.getName(), file.toString(), "test");
+        synchronized (lock){
+            var filename = StringUtils.cleanPath(file.getOriginalFilename());
+            var artefact = new Artefact("version", "test", file.getOriginalFilename(), file.toString(), "test");
 
-        return cloneRepo.save(artefact);
+            return cloneRepo.save(artefact);
+        }
     }
 
     public List<Artefact> findAllArtefact(){
@@ -36,6 +39,11 @@ public class ArtefactService {
 
     public Stream<Artefact> getAllFiles() {
         return cloneRepo.findAll().stream();
+    }
+
+    public List<String> getIdOfFile(){
+        var tmp = findAllArtefact();
+        return tmp.stream().map(p -> p.getNumVersion()).toList();
     }
 
     public Artefact getFile(Long id) {
