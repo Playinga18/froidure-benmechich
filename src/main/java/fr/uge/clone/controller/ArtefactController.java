@@ -1,7 +1,6 @@
 package fr.uge.clone.controller;
 
-import fr.uge.clone.backend.ArtefactFile;
-import fr.uge.clone.backend.StockInBlockMethod;
+import fr.uge.clone.service.BlockService;
 import fr.uge.clone.message.ResponseFile;
 import fr.uge.clone.message.ResponseMessage;
 import fr.uge.clone.model.Artefact;
@@ -20,7 +19,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
@@ -33,7 +31,7 @@ public class ArtefactController {
     private ArtefactRepository artefactRepository;
 
     @Autowired
-    private StockInBlockMethod stock;
+    private BlockService stock;
 
     @PostMapping("/upload")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
@@ -90,5 +88,8 @@ public class ArtefactController {
     @GetMapping("/artefact/{id}")
     public Artefact getArtefact(@PathVariable Long id) {
         return artefactRepository.findById(id).orElse(null);
+    }
+    public void Test(){
+        System.out.println(storageService.mapListOfHashByIdArtefact());
     }
 }

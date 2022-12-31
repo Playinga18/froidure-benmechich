@@ -24,7 +24,7 @@ public class Artefact {
     private String description;
 
     @ManyToMany
-    List<Block> methods;
+    List<Block> blocks;
 
     public Artefact() {
     }
@@ -83,6 +83,10 @@ public class Artefact {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Block> getBlocks(){
+        return blocks;
     }
 
     @Override
