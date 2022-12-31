@@ -25,13 +25,12 @@ public class BlockService {
     public void storeBlock(Artefact artefact) throws Exception {
         synchronized (this){
             Objects.requireNonNull(artefact);
-            var artefactFile = new ArtefactFile("src/main/uploads");
+            var artefactFile = new ArtefactFile("src/main/uploads/" + artefact.getNumVersion());
             artefactFile.open();
             var artefactHash = artefactFile.IndexArtefact();
             for (Hash hash : artefactHash) {
                 var block = new Block(hash.getHash(), artefact.getNumVersion(), String.valueOf(hash.getLine()), BytecodeBlock.getBlockLength());
                 blockRepository.save(block);
-
             }
         }
     }

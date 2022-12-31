@@ -2,9 +2,6 @@ package fr.uge.clone.backend;
 
 import fr.uge.clone.service.ArtefactService;
 
-import fr.uge.clone.repository.ArtefactRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;

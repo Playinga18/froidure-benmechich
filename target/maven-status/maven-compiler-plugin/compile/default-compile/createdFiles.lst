@@ -1,5 +1,4 @@
 fr\uge\clone\model\Block.class
-fr\uge\clone\controller\CloneController.class
 fr\uge\clone\exception\FileUploadExceptionAdvice.class
 fr\uge\clone\repository\ArtefactRepository.class
 fr\uge\clone\message\ResponseMessage.class
@@ -14,5 +13,7 @@ fr\uge\clone\repository\BlockRepository.class
 fr\uge\clone\service\BlockService.class
 fr\uge\clone\backend\Score.class
 fr\uge\clone\backend\ClassFile.class
+fr\uge\clone\controller\ArtefactController.class
 fr\uge\clone\backend\BytecodeBlock.class
+fr\uge\clone\backend\KarpRabin.class
 fr\uge\clone\Application.class

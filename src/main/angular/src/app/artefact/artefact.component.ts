@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ArtefactService } from './artefact.service';
-import { Artefact } from "./artefact.model";
+//import { ArtefactService } from './artefact.service';
 
 @Component({
   selector: 'app-artefact-description',
@@ -8,14 +7,14 @@ import { Artefact } from "./artefact.model";
   styleUrls: ['./artefact.component.css']
 })
 export class ArtefactComponent {
-
-  artefact: Artefact | undefined;
+/*
+  artefact: Artefact;
 
   constructor(private artefactService: ArtefactService) {}
 
   ngOnInit() {
-    this.artefactService.getArtefact(this.artefact?.id).subscribe(artefact => {
+    this.artefactService.getArtefact(id).subscribe(artefact => {
       this.artefact = artefact;
     });
-  }
+  }*/
 }

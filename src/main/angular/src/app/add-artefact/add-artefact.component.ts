@@ -11,7 +11,7 @@ import { FileUploadService} from "../file.service";
 })
 
 export class AddArtefactComponent implements OnInit {
-  selectedFiles?: FileList | null;
+  selectedFiles?: FileList;
   currentFile?: File;
   progress = 0;
   message = '';
