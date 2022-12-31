@@ -24,6 +24,7 @@ public class StockInBlockMethod {
             for (Hash hash : artefactHash) {
                 var block = new Block(hash.getHash(), artefact.getNumVersion(), String.valueOf(hash.getLine()), BytecodeBlock.getBlockLength());
                 blockRepository.save(block);
+
             }
         }
     }
